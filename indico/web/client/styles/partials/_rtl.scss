@@ -1,0 +1,295 @@
+// This file is part of Indico.
+// Copyright (C) 2002 - 2025 CERN
+//
+// Indico is free software; you can redistribute it and/or
+// modify it under the terms of the MIT License; see the
+// LICENSE file for more details.
+
+// RTL (Right-to-Left) Support for Persian/Arabic languages
+
+// Apply RTL styles when html has dir="rtl"
+html[dir='rtl'] {
+  direction: rtl;
+  text-align: right;
+
+  // Font family for Persian locale
+  &[lang='fa'],
+  &[lang='fa-IR'] {
+    font-family: Vazirmatn, 'Liberation Sans', Arial, sans-serif;
+  }
+
+  // Reverse float directions
+  .pull-left {
+    float: right !important;
+  }
+
+  .pull-right {
+    float: left !important;
+  }
+
+  .text-left {
+    text-align: right !important;
+  }
+
+  .text-right {
+    text-align: left !important;
+  }
+
+  // Reverse margins and paddings
+  .margin-left {
+    margin-right: inherit;
+    margin-left: 0;
+  }
+
+  .margin-right {
+    margin-left: inherit;
+    margin-right: 0;
+  }
+
+  .padding-left {
+    padding-right: inherit;
+    padding-left: 0;
+  }
+
+  .padding-right {
+    padding-left: inherit;
+    padding-right: 0;
+  }
+
+  // Reverse border radius
+  .border-radius-left {
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .border-radius-right {
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  // Navigation and menus
+  nav,
+  .nav,
+  .navbar,
+  .menu {
+    direction: rtl;
+  }
+
+  // Lists
+  ul,
+  ol {
+    padding-right: 40px;
+    padding-left: 0;
+  }
+
+  // Forms
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='number'],
+  input[type='tel'],
+  input[type='url'],
+  textarea,
+  select {
+    text-align: right;
+    direction: rtl;
+  }
+
+  // Buttons with icons
+  .button-icon-left {
+    margin-left: 0.5em;
+    margin-right: 0;
+  }
+
+  .button-icon-right {
+    margin-right: 0.5em;
+    margin-left: 0;
+  }
+
+  // Tables
+  table {
+    direction: rtl;
+    text-align: right;
+
+    th,
+    td {
+      text-align: right;
+    }
+  }
+
+  // Dropdowns
+  .dropdown-menu {
+    right: auto;
+    left: 0;
+    text-align: right;
+  }
+
+  // Modal dialogs
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    text-align: right;
+  }
+
+  // Tooltips and popovers
+  .tooltip,
+  .popover {
+    text-align: right;
+  }
+
+  // Breadcrumbs
+  .breadcrumb {
+    > li + li::before {
+      content: '\u200F/\u200F'; // RTL slash with right-to-left marks
+    }
+  }
+
+  // Checkboxes and radios
+  .checkbox,
+  .radio {
+    padding-right: 20px;
+    padding-left: 0;
+
+    input[type='checkbox'],
+    input[type='radio'] {
+      margin-right: -20px;
+      margin-left: 0;
+    }
+  }
+
+  // Icons that should be mirrored in RTL
+  .icon-arrow-left::before {
+    content: '\u2192'; // Right arrow
+  }
+
+  .icon-arrow-right::before {
+    content: '\u2190'; // Left arrow
+  }
+
+  // Flexbox containers
+  .flex-container {
+    flex-direction: row-reverse;
+  }
+
+  // Grid layouts
+  .grid-container {
+    direction: rtl;
+  }
+
+  // Pagination
+  .pagination {
+    direction: rtl;
+
+    li {
+      float: right;
+    }
+  }
+
+  // Sidebar
+  .sidebar {
+    &.left {
+      right: 0;
+      left: auto;
+    }
+
+    &.right {
+      left: 0;
+      right: auto;
+    }
+  }
+
+  // Calendar and date picker
+  .calendar,
+  .datepicker {
+    direction: rtl;
+    text-align: right;
+
+    th,
+    td {
+      text-align: center;
+    }
+  }
+
+  // Tabs
+  .tabs,
+  .tab-list {
+    direction: rtl;
+  }
+
+  // Search boxes
+  .search-box {
+    input {
+      padding-right: 2em;
+      padding-left: 1em;
+    }
+
+    .search-icon {
+      right: 0.5em;
+      left: auto;
+    }
+  }
+
+  // Cards
+  .card {
+    text-align: right;
+  }
+
+  // Alerts
+  .alert {
+    text-align: right;
+
+    .close {
+      left: 0;
+      right: auto;
+    }
+  }
+
+  // Progress bars
+  .progress-bar {
+    direction: ltr; // Progress bars should still fill left to right
+  }
+}
+
+// LTR override for specific elements that should remain LTR in RTL mode
+html[dir='rtl'] {
+  // Code blocks and pre tags should remain LTR
+  code,
+  pre,
+  .code,
+  .monospace {
+    direction: ltr;
+    text-align: left;
+  }
+
+  // Numbers and dates in certain contexts
+  .number,
+  .currency,
+  .time {
+    direction: ltr;
+    display: inline-block;
+  }
+
+  // Email addresses and URLs
+  .email,
+  .url,
+  a[href^='mailto:'],
+  a[href^='http://'],
+  a[href^='https://'] {
+    direction: ltr;
+    unicode-bidi: embed;
+  }
+}
+
+// Persian number styling
+html[lang='fa'],
+html[lang='fa-IR'] {
+  // Use Persian digits where appropriate
+  .persian-digits {
+    font-variant-numeric: normal;
+    font-feature-settings: 'numr' off, 'dnom' off;
+  }
+}

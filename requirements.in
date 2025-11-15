@@ -30,6 +30,7 @@ icalendar
 indico-fonts
 ipython
 itsdangerous
+jdatetime
 jinja2
 jsonschema
 lxml[html5]

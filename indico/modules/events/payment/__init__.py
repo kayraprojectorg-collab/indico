@@ -28,8 +28,8 @@ CONDITIONS = ('CANCELLATION:\n'
 
 
 payment_settings = SettingsProxy('payment', {
-    'currencies': [{'code': 'EUR', 'name': 'Euro'}, {'code': 'USD', 'name': 'US Dollar'}],
-    'currency': 'EUR',
+    'currencies': [{'code': 'IRR', 'name': 'Iranian Rial'}, {'code': 'EUR', 'name': 'Euro'}, {'code': 'USD', 'name': 'US Dollar'}],
+    'currency': 'IRR',
     'conditions': CONDITIONS
 })
 
