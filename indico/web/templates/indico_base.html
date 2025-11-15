@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 
 <html lang="{{ current_locale.language }}"
+      dir="{% if current_locale.language in ['fa', 'ar', 'he', 'ur'] %}rtl{% else %}ltr{% endif %}"
       prefix="og: http://ogp.me/ns#"
       data-canonical-locale="{{ current_locale.html_locale }}"
       data-static-site="{{ g.get('static_site', false)|tojson|forceescape }}">

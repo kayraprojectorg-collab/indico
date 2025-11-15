@@ -28,6 +28,8 @@ from indico.core.config import config
 from indico.core.logger import Logger
 from indico.util.caching import memoize_request
 from indico.util.i18n import IndicoLocale, _, get_current_locale, ngettext, parse_locale
+from indico.util.jalaali import (format_jalaali_date, format_jalaali_datetime,
+                                  should_use_jalali)
 
 
 class relativedelta(_relativedelta):  # noqa: N801
@@ -106,6 +108,10 @@ def format_datetime(dt, format='medium', locale=None, timezone=None):
     if not timezone and dt.tzinfo:
         timezone = session.tzinfo
 
+    # Use Jalali calendar for Persian locale
+    if should_use_jalali():
+        return format_jalaali_datetime(dt, format=format, locale=locale, timezone=timezone)
+
     return _format_datetime(dt, format=format, locale=locale, tzinfo=timezone)
 
 
@@ -117,6 +123,10 @@ def format_date(d, format='medium', locale=None, timezone=None):
         locale = get_current_locale()
     if timezone and isinstance(d, datetime) and d.tzinfo:
         d = d.astimezone(pytz.timezone(timezone) if isinstance(timezone, str) else timezone)
+
+    # Use Jalali calendar for Persian locale
+    if should_use_jalali():
+        return format_jalaali_date(d, format=format, locale=locale)
 
     return _format_date(d, format=format, locale=locale)
 
